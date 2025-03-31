@@ -44,12 +44,12 @@ jobs:
             echo "new_version=$zotero" >> "$GITHUB_ENV"
           fi
       
-      - name: Update snapcraft.yaml
-        if: ${{ env.new_version }}
-        run: |
-          echo "Updating snapcraft.yaml to ${{ env.new_version }}"
-          # Use sed instead of yq, because yq deletes empty lines
-          sed -i "s/^version: .*/version: '${{ env.new_version }}'/" snap/snapcraft.yaml
+      # - name: Update snapcraft.yaml
+      #   if: ${{ env.new_version }}
+      #   run: |
+      #     echo "Updating snapcraft.yaml to ${{ env.new_version }}"
+      #     # Use sed instead of yq, because yq deletes empty lines
+      #     sed -i "s/^version: .*/version: '${{ env.new_version }}'/" snap/snapcraft.yaml
       
       - name: Commit changes
         if: ${{ env.new_version }}
