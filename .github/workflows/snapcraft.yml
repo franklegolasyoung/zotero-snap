@@ -1,23 +1,23 @@
-# This workflow publishes a snap on updates to the master and beta branch
+# # This workflow publishes a snap on updates to the master and beta branch
 
-name: snapcraft
-on:
-  push:
-    branches:
-      - master
-      - beta
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build snap
-        uses: snapcore/action-build@v1
-        id: build
-      - name: Publish to the Snap Store
-        uses: snapcore/action-publish@master
-        env:
-          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAP_LOGIN }}
-        with:
-          snap: ${{ steps.build.outputs.snap }}
-          release: ${{ github.ref_name == 'master' && 'candidate' || 'beta' }}
+# name: snapcraft
+# on:
+#   push:
+#     branches:
+#       - master
+#       - beta
+# jobs:
+#   publish:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Build snap
+#         uses: snapcore/action-build@v1
+#         id: build
+#       - name: Publish to the Snap Store
+#         uses: snapcore/action-publish@master
+#         env:
+#           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAP_LOGIN }}
+#         with:
+#           snap: ${{ steps.build.outputs.snap }}
+#           release: ${{ github.ref_name == 'master' && 'candidate' || 'beta' }}
